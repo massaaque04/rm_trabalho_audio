@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(https://store-images.s-microsoft.com/image/apps.61488.70095181727403094.836e912f-6f3c-4a72-b30b-d1b54224d55a.ee1baa43-150c-43b5-9f58-b58dbd5648e9?q=90&w=480&h=270);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f0f0f0;
+}
+.container {
+    text-align: center;
+    margin-top: 40px;
+}
+#audio {
+    margin-bottom: 20px;
+}
+.botao {
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #4CAF50;
+    background-color: transparent;
+    color: #4CAF50;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.botao:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.ativar_desativar {
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #f80000;
+    background-color: transparent;
+    color: #f80000;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.ativar_desativar:hover {
+    background-color: #f80000;
+    color: white;
+}
+#duracao {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}

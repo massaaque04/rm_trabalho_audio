@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag de Audio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <audio id="audio" controls muted>
+            <source id="audio1" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+            <source id="audio2" src="https://archive.org/download/FreeMusicArchive_John_Carter_PlayItNow/John_Carter_-_Play_It_Now.mp3" type="audio/mp3">
+        </audio>
+
+        <br>
+
+        <button class="ativar_desativar" onclick="enableControls()" type="button">Ativar Controles</button>
+        <button class="ativar_desativar" onclick="disableControls()" type="button">Desativar Controles</button>
+        <button class="botao" onclick="getCurTime()" type="button">Posição do Áudio</button>
+        <button class="botao" onclick="getPaused()" type="button">Está Pausado?</button>
+        <button class="botao" onclick="getPlaybackrate()" type="button">Qual a velocidade de reprodução?</button>
+        <button class="botao" onclick="getReadyState()" type="button">Qual seu estado?</button>
+        <button class="botao" onclick="getLoad()" type="button">Mudar Áudio</button><br>
+        <button class="botao" onclick="getDuration()">Duração em segundos</button>
+
+        <p id="duracao"></p>
+    </div>
+
+    <script>
+        let audio = document.getElementById("audio")
+
+        //Current Time
+        function getCurTime() { 
+            alert(audio.currentTime)
+        } 
+
+        //Paused
+        function getPaused() { 
+            alert(audio.paused)
+        } 
+
+        //PlaybackRate
+        function getPlaybackrate() { 
+            alert(audio.playbackRate)
+        } 
+
+        //ReadyState
+        function getReadyState() { 
+            alert(audio.readyState)
+        } 
+
+        //Seeking
+        audio.onseeking = function() {
+            alert("O áudio foi movido! 🚀")
+        }
+
+        //controls
+        function enableControls() { 
+            audio.controls = true
+            audio.load()
+        } 
+
+        function disableControls() { 
+            audio.controls = false
+            audio.load()
+        } 
+
+        //Load
+        function getLoad() { 
+            document.getElementById("audio1").src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+            document.getElementById("audio2").src = "https://archive.org/download/FreeMusicArchive_John_Carter_PlayItNow/John_Carter_-_Play_It_Now.mp3"
+            audio.load()
+        } 
+
+        //Duration
+        function getDuration() {
+            var x = document.getElementById("audio").duration
+            document.getElementById("duracao").innerHTML = x
+        }
+
+        //Ended
+        audio.onended = function() {
+            alert("Chegou no fim 😭")
+        }
+
+    </script>
+</body>
+</html>
