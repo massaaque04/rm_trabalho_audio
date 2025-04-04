@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag de Vídeo</title>
+</head>
+<body>
+    <video id="video" controls poster="poster1.jpg">
+        <source src="videoplayback.mp4" type="video/mp4">
+        <track src="legendas.vtt" kind="subtitles" srclang="en" label="English" default>
+    </video>
+    <br>
+    <!-- Botões existentes -->
+    <button onclick="getVideoWidth()">Ajustar Largura</button>
+    <button onclick="getVideoHeight()">Ajustar Altura</button>
+    <p>Meu navegador pode reproduzir vídeos MP4? <span>
+        <button onclick="supportType(event,'video/mp4','avc1.42E01E, mp4a.40.2')" type="button">Test</button>
+    </span></p>
+
+    <!-- Novos botões -->
+    <button onclick="mostrarAtributos()">Mostrar Atributos</button>
+    <button onclick="alternarPoster()">Alternar Pôster</button>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let video = document.getElementById("video");
+
+        // Funções existentes
+        function getVideoWidth() {
+            video.width = "500";
+        }
+
+        function getVideoHeight() {
+            video.height = "300";
+        }
+
+        function supportType(e, vidType, codType) { 
+            var x = document.createElement("video");
+            let isSupp = x.canPlayType(vidType + ';codecs="' + codType + '"');
+            if (isSupp == "") {
+                isSupp = "Não";
+            }
+            e.target.parentNode.innerHTML = "Answer: " + isSupp;
+        }
+
+        // Novas funções
+        // Item 3: Mostrar atributos
+        function mostrarAtributos() {
+            const atributos = {
+                currentSrc: video.currentSrc,
+                controls: video.controls,
+                autoplay: video.autoplay,
+                loop: video.loop,
+                poster: video.poster,
+                id: video.id,
+                width: video.width,
+                height: video.height
+            };
+            alert(JSON.stringify(atributos, null, 2));
+        }
+
+        // Item 4: Alternar pôsteres
+        let posterAtual = 1;
+        function alternarPoster() {
+            if (posterAtual === 1) {
+                video.poster = 'poster2fc.png';
+                posterAtual = 2;
+            } else {
+                video.poster = 'poster1fc.png';
+                posterAtual = 1;
+            }
+        }
+
+        // Item 5: Alertas de pausa e fim
+        video.addEventListener('pause', () => {
+            alert('O vídeo foi pausado!');
+        });
+
+        video.addEventListener('ended', () => {
+            alert('O vídeo terminou!');
+        });
+
+        // Item 6: Verificação do track com jQuery
+        $(document).ready(function() {
+            const $video = $('#video');
+            if ($video.find('track').length === 0) {
+                $video.append(
+                    $('<track>').attr({
+                        src: 'legendas.vtt',
+                        kind: 'subtitles',
+                        srclang: 'en',
+                        label: 'English',
+                        default: true
+                    })
+                );
+            }
+        });
+    </script>
+</body>
+</html>
